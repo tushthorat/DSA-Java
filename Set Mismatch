@@ -1,0 +1,33 @@
+class Solution {
+    public int[] findErrorNums(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[2];
+
+     
+        HashSet<Integer> set = new HashSet<>();
+        int duplicate = 0;
+
+       
+        int expectedSum = n * (n + 1) / 2;
+
+       
+        int actualSum = 0;
+        for (int num : nums) {
+            
+            if (!set.add(num)) {
+                duplicate = num;
+            }
+
+           
+            actualSum += num;
+        }
+
+       
+        int missing = expectedSum - (actualSum - duplicate);
+
+        result[0] = duplicate;
+        result[1] = missing;
+
+        return result;
+    }
+}
